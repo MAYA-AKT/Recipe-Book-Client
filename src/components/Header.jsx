@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { use } from 'react';
 import Links from './Links';
+import { Link } from 'react-router';
+import { AuthContext } from '../context/AuthContext';
 
 const Header = () => {
+    const { user ,logOut} = use(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                console.log('successfully logout');
+
+            }).catch((error) => {
+                console.log(error);
+
+            });
+
+    }
+
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-sm">
+            <div className="navbar ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -12,19 +28,27 @@ const Header = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-tomato rounded-box z-1 mt-3 w-52 p-2 shadow ">
-                            <Links/>
+                            className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow ">
+                            <Links />
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">TastyBook</a>
+                    <p className=" ">TastyBook</p>
+                    <p>{user?.displayName}</p>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                       <Links/>
+                        <Links />
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {
+                        user ? <button onClick={handleLogOut}>Logout</button> :
+                            <button>
+                                <Link to='/auth/signup'>SignUp</Link>
+                            </button>
+                    }
+
+
                 </div>
             </div>
         </div>

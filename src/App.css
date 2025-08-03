@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
+*{
+    box-sizing: border-box;
+    padding: 0;
+   
+}
+
+a.active{
+    border-bottom: 2px solid red;
+    
+}

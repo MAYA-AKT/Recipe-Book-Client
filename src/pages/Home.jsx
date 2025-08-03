@@ -2,11 +2,18 @@
 
 
 
+
+
 const Home = () => {
+ 
+ 
+ 
  
     return (
         <div>
-            Home
+          
+            <h1>Slider</h1>
+            
         </div>
     );
 };
