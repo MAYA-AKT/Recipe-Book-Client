@@ -10,6 +10,7 @@ import AllRecipes from "../pages/AllRecipes";
 import AddRecipe from "../pages/AddRecipe";
 import AuthLayout from "../authentication/AuthLayout";
 import RecipeDetails from "../pages/RecipeDetails";
+import UpdateRecipe from "../components/UpdateRecipe";
 
 
 export const router = createBrowserRouter([
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'all-recipes',
-               
+
                 Component: AllRecipes,
 
             },
@@ -39,11 +40,18 @@ export const router = createBrowserRouter([
                 ErrorBoundary: <p>error</p>
             },
             {
-                path:'recipes/:id',
-                loader:({params})=>fetch(`http://localhost:3000/recipe-details/${params.id}`),
-                hydrateFallbackElement:<p>error</p>,
-                Component:RecipeDetails
-            }
+                path: 'recipes/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
+                hydrateFallbackElement: <p>error</p>,
+                Component: RecipeDetails
+            },
+            {
+                path: 'recipe-update/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
+                hydrateFallbackElement: <p>error</p>,
+                Component: UpdateRecipe
+
+            },
 
         ]
     },
