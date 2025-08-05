@@ -1,24 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { FaHeart } from "react-icons/fa";
 
-const RecipeCard = ({recipe}) => {
+
+
+const RecipeCard = ({ recipe }) => {
+    const { _id, title, image, likes, cuisine, prepTime, categories } = recipe;
     return (
-        <div key={recipe?._id} className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
-            <img src={recipe?.image} alt={recipe?.title} className="w-full h-48 object-cover" />
+        <div key={_id} className="bg-white shadow-sm overflow-hidden flex flex-col">
+            <img src={image} alt={title} className="w-full h-48 object-cover" />
 
-            <div className="p-4 flex flex-col flex-grow">
-                <h3 className="text-xl font-semibold mb-2">{recipe?.title}</h3>
-                <p className="text-sm text-gray-600 mb-1"><strong>Cuisine:</strong> {recipe?.cuisine}</p>
-                <p className="text-sm text-gray-600 mb-1"><strong>Prep Time:</strong> {recipe?.prepTime} min</p>
+            <div className="m-4 flex flex-col flex-grow">
+                <div className='flex justify-between my-3'>
+                    <h3 className="text-xl font-semibold ">{title}</h3>
+                    <p className=" flex items-center text-xl" title='Like'>
+                        <span className='text-red-600 '><FaHeart /></span>
+                        <span className='text-gray-400  '> {likes || 0}</span></p>
+                </div>
+                <p className="text-sm text-gray-600 mb-1"><strong>Cuisine:</strong> {cuisine}</p>
+                <p className="text-sm text-gray-600 mb-1"><strong>Prep Time:</strong> {prepTime} min</p>
                 <p className="text-sm text-gray-600 mb-3">
-                    <strong>Categories:</strong> {recipe?.categories?.join(', ')}
+                    <strong>Categories:</strong> {categories?.join(', ')}
                 </p>
 
-                <div className="mt-auto">
-                    <Link to={`/recipes/${recipe?._id}`}>
-                        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+                <div className="flex justify-end">
+                    <Link to={`/recipes/${_id}`} className=''>
+                       
                             See Details
-                        </button>
+                       
                     </Link>
                 </div>
             </div>

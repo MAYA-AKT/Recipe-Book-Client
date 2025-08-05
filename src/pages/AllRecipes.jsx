@@ -10,12 +10,11 @@ const AllRecipes = () => {
 
     return (
         <div>
-            <div className="max-w-7xl mx-auto px-4 py-8">
-                <h2 className="text-3xl font-bold mb-6 text-center">All Recipes</h2>
+            <div className="md:w-11/12 mx-auto my-10 px-4 py-8">
+                <h2 className="text-2xl font-bold mb-6">All Recipes</h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {/* {recipes?.map((recipe) => <RecipeCard key={recipe._id} recipe={recipe} /> )}
-                     */}
+                    
                      {
                         recipes?.map((recipe)=> <RecipeCard key={recipe._id} recipe={recipe} /> )
                      }
