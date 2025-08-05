@@ -20,8 +20,8 @@ const MyRecipes = () => {
 
 
     return (
-        <div className="max-w-7xl mx-auto p-6">
-            <h2 className="text-3xl font-bold mb-6 text-center">My Recipes</h2>
+        <div className="w-full md:w-11/12 mx-auto p-6 my-10">
+            <h2 className="text-2xl font-bold mb-6 ">My Recipes</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {myRecipes?.map(recipe => <MyRecipeCard key={recipe._id} recipe={recipe} />)}
