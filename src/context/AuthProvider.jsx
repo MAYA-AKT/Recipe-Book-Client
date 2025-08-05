@@ -14,6 +14,24 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [recipes, setRecipes] = useState([]);
+    const [myRecipes, setMyRecipes] = useState([]);
+    const [topRecipes, setTopRecipes] = useState([]);
+
+
+
+
+
+    
+    //    fetch top Products 
+    useEffect(() => {
+        fetch(`http://localhost:3000/top-recipes`)
+            .then((res) => res.json())
+            .then((data) => {
+                setTopRecipes(data);
+            })
+    }, [])
+
+
 
     //    fetch all recipe data
     useEffect(() => {
@@ -66,7 +84,11 @@ const AuthProvider = ({ children }) => {
         userUp,
         logOut,
         setRecipes,
-        recipes
+        recipes,
+        myRecipes,
+        setMyRecipes,
+        topRecipes,
+        setTopRecipes
     }
 
 

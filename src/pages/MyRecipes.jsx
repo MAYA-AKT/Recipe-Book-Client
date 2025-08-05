@@ -1,12 +1,11 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { use, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import MyRecipeCard from '../components/MyRecipeCard';
 
 
 const MyRecipes = () => {
-    const { user } = use(AuthContext);
-    const [myRecipes, setMyRecipes] = useState([]);
-
+    const { user,myRecipes, setMyRecipes } = use(AuthContext);
+  
 
     useEffect(() => {
         fetch(`http://localhost:3000/my-recipes?email=${user?.email}`)

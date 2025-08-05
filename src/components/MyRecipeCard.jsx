@@ -1,22 +1,49 @@
+import { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 
 
 
 const MyRecipeCard = ({ recipe }) => {
-    const {_id, title, image, cuisine, prepTime, ingredients, instructions, likes, categories } = recipe;
+    const {myRecipes,setMyRecipes} = use(AuthContext);
+    const { _id, title, image, cuisine, prepTime, ingredients, instructions, likes, categories } = recipe;
 
 
+    const handleDeleteRecipe = (id) => {
+        fetch(`http://localhost:3000/recipe-delete/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data=>{
+                if(data.deletedCount){
+                    const remainigRecipe = myRecipes.filter(recipe=>recipe._id !== id);
+                    setMyRecipes(remainigRecipe);
+                    alert('recipe delete');
+                }
+            })
 
+    }
 
 
     return (
         <div>
             <div key={recipe._id} className="bg-white rounded-xl shadow p-4 flex flex-col">
-                <img
+                {/* <img
                     src={image}
                     alt={title}
                     className="w-full h-48 object-cover rounded mb-3"
-                />
+                /> */}
+                {image ? (
+                    <img
+                        src={image}
+                        alt={title}
+                        className="w-full h-48 object-cover rounded mb-3"
+                    />
+                ) : (
+                    <div className="w-full h-48 bg-gray-200 rounded mb-3 flex items-center justify-center text-gray-500 text-sm">
+                        No Image Available
+                    </div>
+                )}
                 <h3 className="text-xl font-semibold mb-1">{title}</h3>
                 <p className="text-sm text-gray-700"><strong>Cuisine:</strong> {cuisine}</p>
                 <p className="text-sm text-gray-700"><strong>Prep Time:</strong> {prepTime} min</p>
@@ -40,6 +67,7 @@ const MyRecipeCard = ({ recipe }) => {
                     <Link to={`/recipe-update/${_id}`}>
                         <button className="btn btn-primary">Update</button>
                     </Link>
+                    <button onClick={() => handleDeleteRecipe(_id)}>Delete</button>
                 </div>
             </div>
         </div>

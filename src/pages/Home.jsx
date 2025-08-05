@@ -1,5 +1,10 @@
 
 
+import Banner from "../components/Banner";
+import TopRecipes from "../components/TopRecipes";
+
+
+
 
 
 
@@ -7,13 +12,12 @@
 const Home = () => {
  
  
- 
- 
     return (
         <div>
           
-            <h1>Slider</h1>
-            
+            <Banner/>
+            <TopRecipes/>
+           
         </div>
     );
 };

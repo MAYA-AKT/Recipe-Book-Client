@@ -11,13 +11,14 @@ import AddRecipe from "../pages/AddRecipe";
 import AuthLayout from "../authentication/AuthLayout";
 import RecipeDetails from "../pages/RecipeDetails";
 import UpdateRecipe from "../components/UpdateRecipe";
+import ErrorPage from "../pages/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
         Component: Root,
-        errorElement: <p>error</p>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
@@ -26,7 +27,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my-recipes',
-                Component: MyRecipes
+                Component: MyRecipes,
+
             },
             {
                 path: 'all-recipes',
@@ -37,18 +39,18 @@ export const router = createBrowserRouter([
             {
                 path: 'add-recipe',
                 Component: AddRecipe,
-                ErrorBoundary: <p>error</p>
+                errorElement: <ErrorPage />,
             },
             {
                 path: 'recipes/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
-                hydrateFallbackElement: <p>error</p>,
+                 loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
+                 errorElement: <ErrorPage />,
                 Component: RecipeDetails
             },
             {
                 path: 'recipe-update/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
-                hydrateFallbackElement: <p>error</p>,
+                 errorElement: <ErrorPage />,
                 Component: UpdateRecipe
 
             },
