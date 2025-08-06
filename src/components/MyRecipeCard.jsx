@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { FaHeart } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { MdSystemUpdateAlt } from "react-icons/md";
-
+import Swal from "sweetalert2";
 
 
 
@@ -15,17 +15,52 @@ const MyRecipeCard = ({ recipe }) => {
 
 
     const handleDeleteRecipe = (id) => {
-        fetch(`http://localhost:3000/recipe-delete/${id}`, {
-            method: 'DELETE'
+
+        // fetch(`http://localhost:3000/recipe-delete/${id}`, {
+        //     method: 'DELETE'
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.deletedCount) {
+        //             const remainigRecipe = myRecipes.filter(recipe => recipe._id !== id);
+        //             setMyRecipes(remainigRecipe);
+        //             alert('recipe delete');
+        //         }
+        //     })
+
+
+        Swal.fire({
+            title: 'Are you sure',
+            text: 'you wont be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes,delete it!',
+
+        }).then((res) => {
+            if (res.isConfirmed) {
+                fetch(`http://localhost:3000/recipe-delete/${id}`, {
+                    method: 'DELETE'
+                }).then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+
+                        if (data.deletedCount) {
+
+                            Swal.fire({
+                                title: 'Deleted',
+                                text: 'your file has been deleted',
+                                icon: 'success'
+                            });
+                            const remainigRecipe = myRecipes.filter(recipe => recipe._id !== id);
+                            setMyRecipes(remainigRecipe);
+                        }
+
+                    })
+
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount) {
-                    const remainigRecipe = myRecipes.filter(recipe => recipe._id !== id);
-                    setMyRecipes(remainigRecipe);
-                    alert('recipe delete');
-                }
-            })
 
     }
 

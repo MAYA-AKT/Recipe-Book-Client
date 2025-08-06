@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigation } from 'react-router';
 
 const UpdateRecipe = () => {
     const data = useLoaderData();
+    const navigate=useNavigation();
     const { _id, image, title, cuisine, prepTime, categories, likes, ingredients, instructions } = data;
 
 
@@ -36,7 +37,7 @@ const UpdateRecipe = () => {
 
     const handleUpRecipe = (e) => {
         e.preventDefault();
-        console.log('after update ', recipe);
+       
 
         fetch(`http://localhost:3000/recipe-update/${_id}`, {
             method: 'PUT',
@@ -47,7 +48,10 @@ const UpdateRecipe = () => {
         })
             .then((res) => res.json())
             .then(data => {
-                console.log('update response data', data);
+                alert('Update Success');
+                navigate('/my-recipes')
+                console.log(data);
+                
                 e.target.reset()
             })
 
