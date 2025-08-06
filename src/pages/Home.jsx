@@ -1,6 +1,7 @@
 
 
 import Banner from "../components/Banner";
+import CookingInstraction from "../components/CookingInstraction";
 import TopRecipes from "../components/TopRecipes";
 
 
@@ -17,7 +18,7 @@ const Home = () => {
           
             <Banner/>
             <TopRecipes/>
-           
+            <CookingInstraction/>
         </div>
     );
 };

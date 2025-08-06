@@ -82,5 +82,9 @@ export const router = createBrowserRouter([
                 Component: SignIn,
             }
         ]
+    },
+    {
+        path:'*',
+        Component:ErrorPage
     }
 ])

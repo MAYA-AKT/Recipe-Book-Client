@@ -1,12 +1,28 @@
-# React + Vite
+# 🍲 TastyBook - Recipe Sharing Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site:** ([])
 
-Currently, two official plugins are available:
+TastyBook is a full-featured recipe-sharing platform where users can create, update, and discover recipes from all over the world. The website integrates Lottie animations to provide a smooth and interactive user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🧑‍🍳 **User Recipes:** Users can add, update, and delete their own recipes including images, ingredients, and instructions.
+- ❤️ **Like System:** Recipes can be liked by users, and the most liked recipes are showcased on the home page.
+- 🔐 **Authentication:** Secured routes with login/logout functionality using Firebase or other auth services.
+- 📱 **Responsive Design:** Fully responsive UI built with Tailwind CSS for all devices.
+- 🎞️ **Lottie Animations:** Smooth animations are used for loading states, empty pages, and success messages.
+
+---
+
+## 🛠️ Technologies Used
+
+- React.js
+- Express.js (Backend)
+- MongoDB (Database)
+- Tailwind CSS
+
+
+---
+
