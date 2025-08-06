@@ -72,7 +72,7 @@ const AddRecipe = () => {
 
     return (
         <div className="max-w-6xl mx-auto p-6  shadow-md rounded-md my-10">
-            <h2 className=" flex items-center justify-center text-2xl font-semibold my-10">Add New Recipe <span><IoMdAdd/></span></h2>
+            <h2 className=" flex items-center justify-end text-2xl font-semibold my-10"><span><IoMdAdd/></span> Add New Recipe </h2>
             <div className=" bg-black">
 
                 <form onSubmit={handleAddRecipe} className="  space-y-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
@@ -183,11 +183,11 @@ const AddRecipe = () => {
 
 
                 </form>
-                <div className="mt-6 flex justify-end ">
+                <div className="mt-6 flex justify-end">
                     <button
                         type="submit"
                         form="yourFormId"
-                        className="inline-block bg-orange-600 text-white py-2 px-7 rounded hover:bg-orange-700 transition"
+                        className="m-5  btn inline-block bg-orange-600 text-white py-2 px-7 rounded hover:bg-orange-700 transition"
                     >
                         Add Recipe
                     </button>

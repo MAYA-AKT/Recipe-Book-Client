@@ -264,7 +264,7 @@ const UpdateRecipe = () => {
                             <input
                                 type="number"
                                 name="likes"
-                                value={recipe.likes}
+                                value={likes}
                                 readOnly
                                 className="w-full p-2 border-b border-orange-400  bg-gray-100 text-gray-500"
                             />

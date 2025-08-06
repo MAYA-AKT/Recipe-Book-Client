@@ -8,7 +8,7 @@ const Footer = () => {
 
 
                     <div>
-                        <h2 className="text-lg font-semibold mb-2"> Tasty Book</h2>
+                         <p className="text-2xl font-semibold text-orange-500 ">TastyBook</p>
                         <p>Your favorite place to share and discover amazing recipes.</p>
                     </div>
 
