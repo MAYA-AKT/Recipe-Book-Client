@@ -16,7 +16,7 @@ const MyRecipeCard = ({ recipe }) => {
 
     const handleDeleteRecipe = (id) => {
 
-        // fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/recipe-delete/${id}`, {
+        // fetch(`http://localhost:3000/recipe-delete/${id}`, {
         //     method: 'DELETE'
         // })
         //     .then(res => res.json())
@@ -40,7 +40,7 @@ const MyRecipeCard = ({ recipe }) => {
 
         }).then((res) => {
             if (res.isConfirmed) {
-                fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/recipe-delete/${id}`, {
+                fetch(`http://localhost:3000/recipe-delete/${id}`, {
                     method: 'DELETE'
                 }).then(res => res.json())
                     .then(data => {

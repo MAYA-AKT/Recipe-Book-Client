@@ -1,9 +1,12 @@
 import React, { use, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { IoMdAdd } from "react-icons/io";
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 const AddRecipe = () => {
     const { user } = use(AuthContext);
+    const navigate = useNavigate();
     const [recipe, setRecipe] = useState({
         image: '',
         title: '',
@@ -42,8 +45,9 @@ const AddRecipe = () => {
 
 
     const handleAddRecipe = (e) => {
-        e.preventDefault();
         console.log("Submitted Recipe:", recipe);
+        e.preventDefault();
+
         const user = {
             displayName, email, photoURL, uid
         }
@@ -51,7 +55,7 @@ const AddRecipe = () => {
             ...recipe,
             user
         }
-        fetch('https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/recipe', {
+        fetch('http://localhost:3000/recipe', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -59,9 +63,9 @@ const AddRecipe = () => {
             body: JSON.stringify(recipeInfo),
         }).then(res => res.json())
             .then(data => {
-                // sweet alart
+                toast.success('User Login successfully!');
                 console.log('after postdb', data);
-
+                navigate('/');
             })
 
 
@@ -72,7 +76,7 @@ const AddRecipe = () => {
 
     return (
         <div className="max-w-6xl mx-auto p-6  shadow-md rounded-md my-10">
-            <h2 className=" flex items-center justify-end text-2xl font-semibold my-10"><span><IoMdAdd/></span> Add New Recipe </h2>
+            <h2 className=" flex items-center justify-end text-2xl font-semibold my-10"><span><IoMdAdd /></span> Add New Recipe </h2>
             <div className=" bg-black">
 
                 <form onSubmit={handleAddRecipe} className="  space-y-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
@@ -155,7 +159,7 @@ const AddRecipe = () => {
 
 
                     <div className=" mx-10">
-                    <label htmlFor="" className='mb-8'>Category</label>
+                        <label htmlFor="" className='mb-8'>Category</label>
                         {["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"].map(cate => (
                             <label key={cate} className="flex items-center space-x-2">
                                 <input
@@ -180,20 +184,18 @@ const AddRecipe = () => {
                         />
                     </div>
 
-
-
-                </form>
-                <div className="mt-6 flex justify-end">
                     <button
                         type="submit"
-                        form="yourFormId"
+
                         className="m-5  btn inline-block bg-orange-600 text-white py-2 px-7 rounded hover:bg-orange-700 transition"
                     >
                         Add Recipe
                     </button>
-                </div>
+
+                </form>
+
             </div>
-        </div >
+        </div>
 
 
     );

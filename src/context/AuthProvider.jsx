@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
 
     const provider = new GoogleAuthProvider();
 
-
+    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [recipes, setRecipes] = useState([]);
     const [myRecipes, setMyRecipes] = useState([]);
@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
 
     //    fetch top Products 
     useEffect(() => {
-        fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/top-recipes`)
+        fetch(`http://localhost:3000/top-recipes`)
             .then((res) => res.json())
             .then((data) => {
                 setTopRecipes(data);
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
     //    fetch all recipe data
     useEffect(() => {
-        fetch('https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/all-recipe')
+        fetch('http://localhost:3000/all-recipe')
             .then(res => res.json())
             .then(data => setRecipes(data))
             .catch(err => console.error('Failed to fetch recipes:', err));
@@ -54,20 +54,23 @@ const AuthProvider = ({ children }) => {
 
 
 
-   const signInWithGoogle=()=>{
-    return signInWithPopup(auth,provider);
-   }
+    const signInWithGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, provider);
+    }
 
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const signUser = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     const userUp = (upUser) => {
-
+        setLoading(true);
         return updateProfile(auth.currentUser, upUser)
     };
 
@@ -79,7 +82,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currUser) => {
             setUser(currUser);
-
+            setLoading(false);
         })
         return () => {
             unSubscribe();
@@ -101,7 +104,8 @@ const AuthProvider = ({ children }) => {
         myRecipes,
         setMyRecipes,
         topRecipes,
-        setTopRecipes
+        setTopRecipes,
+        loading 
     }
 
 

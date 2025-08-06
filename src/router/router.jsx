@@ -33,11 +33,13 @@ export const router = createBrowserRouter([
                         <MyRecipes />
                     </PrivateRouter>
                 ),
+                 hydrateFallbackElement: <span className="loading loading-dots loading-xl"></span>
             },
             {
                 path: 'all-recipes',
 
                 Component: AllRecipes,
+                 hydrateFallbackElement: <span className="loading loading-dots loading-xl"></span>
 
             },
             {
@@ -47,23 +49,26 @@ export const router = createBrowserRouter([
                         <AddRecipe/>
                     </PrivateRouter>
                 ),
+                 hydrateFallbackElement: <span className="loading loading-dots loading-xl"></span>,
                 errorElement: <ErrorPage />,
             },
             {
                 path: 'recipes/:id',
-                 loader: ({ params }) => fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/recipe-details/${params.id}`),
+                 loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
                  errorElement: <ErrorPage />,
                 element: (
                     <PrivateRouter>
                         <RecipeDetails />
                     </PrivateRouter>
                 ),
+                 hydrateFallbackElement: <span className="loading loading-dots loading-xl"></span>
             },
             {
                 path: 'recipe-update/:id',
-                loader: ({ params }) => fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/recipe-details/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
                  errorElement: <ErrorPage />,
-                Component: UpdateRecipe
+                Component: UpdateRecipe,
+                 hydrateFallbackElement: <span className="loading loading-dots loading-xl"></span>
 
             },
 

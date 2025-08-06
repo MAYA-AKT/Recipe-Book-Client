@@ -12,7 +12,7 @@ const RecipeDetails = () => {
         const newCount = count + 1;
         setCount(newCount);
 
-        fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/like-update/${id}`, {
+        fetch(`http://localhost:3000/like-update/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

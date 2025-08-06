@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useLoaderData, useNavigation } from 'react-router';
+import { useLoaderData } from 'react-router';
 
 const UpdateRecipe = () => {
     const data = useLoaderData();
-    const navigate=useNavigation();
+   
     const { _id, image, title, cuisine, prepTime, categories, likes, ingredients, instructions } = data;
 
 
@@ -37,9 +37,9 @@ const UpdateRecipe = () => {
 
     const handleUpRecipe = (e) => {
         e.preventDefault();
-       
 
-        fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/recipe-update/${_id}`, {
+
+        fetch(`http://localhost:3000/recipe-update/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -49,9 +49,9 @@ const UpdateRecipe = () => {
             .then((res) => res.json())
             .then(data => {
                 alert('Update Success');
-                navigate('/my-recipes')
+              
                 console.log(data);
-                
+
                 e.target.reset()
             })
 
@@ -274,15 +274,15 @@ const UpdateRecipe = () => {
                             />
                         </div>
 
-
+                        <button
+                            type="submit"
+                            className="w-full bg-orange-600 text-white py-2 rounded hover:bg-orange-700 transition"
+                        >
+                            Update Recipe
+                        </button>
 
                     </form>
-                    <button
-                        type="submit"
-                        className="w-full bg-orange-600 text-white py-2 rounded hover:bg-orange-700 transition"
-                    >
-                        Update Recipe
-                    </button>
+
                 </div>
             </div>
         </div>

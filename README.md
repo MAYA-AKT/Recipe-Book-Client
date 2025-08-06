@@ -1,6 +1,8 @@
 # 🍲 TastyBook - Recipe Sharing Platform
 
-**Live Site:** ([])
+**Live Site:** 
+client site [https://recipe-book-app-5cae7.web.app]
+server site [https://recipe-book-server-dp4mqdn1w-mayas-projects-2b22cb09.vercel.app]
 
 TastyBook is a full-featured recipe-sharing platform where users can create, update, and discover recipes from all over the world. The website integrates Lottie animations to provide a smooth and interactive user experience.
 
