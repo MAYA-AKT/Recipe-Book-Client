@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'recipes/:id',
-                 loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
+                 loader: ({ params }) => fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/recipe-details/${params.id}`),
                  errorElement: <ErrorPage />,
                 element: (
                     <PrivateRouter>
@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'recipe-update/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
+                loader: ({ params }) => fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/recipe-details/${params.id}`),
                  errorElement: <ErrorPage />,
                 Component: UpdateRecipe
 

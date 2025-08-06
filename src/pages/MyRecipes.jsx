@@ -8,7 +8,7 @@ const MyRecipes = () => {
   
 
     useEffect(() => {
-        fetch(`http://localhost:3000/my-recipes?email=${user?.email}`)
+        fetch(`https://recipe-book-server-4l7blp1bb-mayas-projects-2b22cb09.vercel.app/my-recipes?email=${user?.email}`)
             .then((res) => res.json())
             .then(data => {
                 setMyRecipes(data);
