@@ -5,12 +5,22 @@ import {
     signInWithEmailAndPassword,
     updateProfile,
     onAuthStateChanged,
-    signOut
+    signOut,
+    signInWithPopup,
+    GoogleAuthProvider
 } from "firebase/auth";
-
-
 import { auth } from '../firebase/firebase.init';
+
+
+
+
+
+
+
 const AuthProvider = ({ children }) => {
+
+    const provider = new GoogleAuthProvider();
+
 
     const [user, setUser] = useState(null);
     const [recipes, setRecipes] = useState([]);
@@ -21,7 +31,7 @@ const AuthProvider = ({ children }) => {
 
 
 
-    
+
     //    fetch top Products 
     useEffect(() => {
         fetch(`http://localhost:3000/top-recipes`)
@@ -44,7 +54,9 @@ const AuthProvider = ({ children }) => {
 
 
 
-
+   const signInWithGoogle=()=>{
+    return signInWithPopup(auth,provider);
+   }
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -79,6 +91,7 @@ const AuthProvider = ({ children }) => {
     const info = {
         user,
         setUser,
+        signInWithGoogle,
         createUser,
         signUser,
         userUp,
