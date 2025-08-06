@@ -54,7 +54,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'recipes/:id',
-                 loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
+                 loader: ({ params }) => fetch(`https://recipe-book-server-blush.vercel.app/recipe-details/${params.id}`),
                  errorElement: <ErrorPage />,
                 element: (
                     <PrivateRouter>
@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'recipe-update/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
+                loader: ({ params }) => fetch(`https://recipe-book-server-blush.vercel.app/recipe-details/${params.id}`),
                  errorElement: <ErrorPage />,
                 Component: UpdateRecipe,
                  hydrateFallbackElement: <span className="loading loading-dots loading-xl"></span>

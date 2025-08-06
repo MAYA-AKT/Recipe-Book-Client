@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
 
     //    fetch top Products 
     useEffect(() => {
-        fetch(`http://localhost:3000/top-recipes`)
+        fetch(`https://recipe-book-server-blush.vercel.app/top-recipes`)
             .then((res) => res.json())
             .then((data) => {
                 setTopRecipes(data);
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
     //    fetch all recipe data
     useEffect(() => {
-        fetch('http://localhost:3000/all-recipe')
+        fetch('https://recipe-book-server-blush.vercel.app/all-recipe')
             .then(res => res.json())
             .then(data => setRecipes(data))
             .catch(err => console.error('Failed to fetch recipes:', err));

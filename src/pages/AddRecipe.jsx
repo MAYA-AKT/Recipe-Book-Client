@@ -55,7 +55,7 @@ const AddRecipe = () => {
             ...recipe,
             user
         }
-        fetch('http://localhost:3000/recipe', {
+        fetch('https://recipe-book-server-blush.vercel.app/recipe', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -12,7 +12,7 @@ const RecipeDetails = () => {
         const newCount = count + 1;
         setCount(newCount);
 
-        fetch(`http://localhost:3000/like-update/${id}`, {
+        fetch(`https://recipe-book-server-blush.vercel.app/like-update/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

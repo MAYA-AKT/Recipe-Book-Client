@@ -39,7 +39,7 @@ const UpdateRecipe = () => {
         e.preventDefault();
 
 
-        fetch(`http://localhost:3000/recipe-update/${_id}`, {
+        fetch(`https://recipe-book-server-blush.vercel.app/recipe-update/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
