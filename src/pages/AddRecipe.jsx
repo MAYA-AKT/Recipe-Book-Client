@@ -1,5 +1,6 @@
 import React, { use, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { IoMdAdd } from "react-icons/io";
 
 const AddRecipe = () => {
     const { user } = use(AuthContext);
@@ -22,7 +23,7 @@ const AddRecipe = () => {
 
 
 
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setRecipe({ ...recipe, [name]: value });
@@ -70,77 +71,91 @@ const AddRecipe = () => {
     }
 
     return (
-        <>
-            <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md mt-10">
-                <h2 className="text-2xl font-semibold mb-6 text-center">Add New Recipe</h2>
-                <form onSubmit={handleAddRecipe} className="space-y-4">
+        <div className="max-w-6xl mx-auto p-6  shadow-md rounded-md my-10">
+            <h2 className=" flex items-center justify-center text-2xl font-semibold my-10">Add New Recipe <span><IoMdAdd/></span></h2>
+            <div className=" bg-black">
 
-                    <input
-                        type="text"
-                        name="image"
-                        placeholder="Image URL"
-                        value={recipe.image}
-                        onChange={handleChange}
-                        className="w-full p-2 border rounded"
-                    />
+                <form onSubmit={handleAddRecipe} className="  space-y-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
 
-
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="Recipe Title"
-                        value={recipe.title}
-                        onChange={handleChange}
-                        className="w-full p-2 border rounded"
-                    />
+                    <div className='mx-10 mt-10'>
+                        <input
+                            type="text"
+                            name="image"
+                            placeholder="Image URL"
+                            value={recipe.image}
+                            onChange={handleChange}
+                            className="w-full border-b border-orange-400"
+                        />
+                    </div>
 
 
-                    <textarea
-                        name="ingredients"
-                        placeholder="Ingredients"
-                        value={recipe.ingredients}
-                        onChange={handleChange}
-                        className="w-full p-2 border rounded"
-                        rows="3"
-                    />
+                    <div className='mx-10 md:mt-10'>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="Recipe Title"
+                            value={recipe.title}
+                            onChange={handleChange}
+                            className="w-full p-2 border-b border-orange-400 "
+                        />
+                    </div>
 
 
-                    <textarea
-                        name="instructions"
-                        placeholder="Instructions"
-                        value={recipe.instructions}
-                        onChange={handleChange}
-                        className="w-full p-2 border rounded"
-                        rows="4"
-                    />
+                    <div className='mx-10'>
+                        <textarea
+                            name="ingredients"
+                            placeholder="Ingredients"
+                            value={recipe.ingredients}
+                            onChange={handleChange}
+                            className="w-full p-2 border-b border-orange-400"
+                            rows="1"
+                        />
+                    </div>
 
 
-                    <select
-                        name="cuisine"
-                        value={recipe.cuisine}
-                        onChange={handleChange}
-                        className="w-full p-2 border rounded"
-                    >
-                        <option value="">Select Cuisine Type</option>
-                        <option value="Italian">Italian</option>
-                        <option value="Mexican">Mexican</option>
-                        <option value="Indian">Indian</option>
-                        <option value="Chinese">Chinese</option>
-                        <option value="Others">Others</option>
-                    </select>
+                    <div className='mx-10'>
+                        <textarea
+                            name="instructions"
+                            placeholder="Instructions"
+                            value={recipe.instructions}
+                            onChange={handleChange}
+                            className="w-full p-2 border-b border-orange-400"
+                            rows="1"
+                        />
+                    </div>
 
 
-                    <input
-                        type="number"
-                        name="prepTime"
-                        placeholder="Preparation Time (in minutes)"
-                        value={recipe.prepTime}
-                        onChange={handleChange}
-                        className="w-full p-2 border rounded"
-                    />
+                    <div className='mx-10'>
+                        <select
+                            name="cuisine"
+                            value={recipe.cuisine}
+                            onChange={handleChange}
+                            className="w-full p-2 border-b border-orange-400 text-white"
+                        >
+                            <option value="">Select Cuisine Type</option>
+                            <option value="Italian" className='text-black'>Italian</option>
+                            <option value="Mexican" className='text-black'>Mexican</option>
+                            <option value="Indian" className='text-black'>Indian</option>
+                            <option value="Chinese" className='text-black'>Chinese</option>
+                            <option value="Others" className='text-black'>Others</option>
+                        </select>
+                    </div>
 
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className='mx-10'>
+                        <input
+                            type="number"
+                            name="prepTime"
+                            placeholder="Preparation Time (in minutes)"
+                            value={recipe.prepTime}
+                            onChange={handleChange}
+                            className="w-full p-2 border-b border-orange-400 "
+                        />
+                    </div>
+
+
+                    <div className=" mx-10">
+                    <label htmlFor="" className='mb-8'>Category</label>
                         {["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"].map(cate => (
                             <label key={cate} className="flex items-center space-x-2">
                                 <input
@@ -155,24 +170,30 @@ const AddRecipe = () => {
                     </div>
 
 
-                    <input
-                        type="number"
-                        name="likes"
-                        value={recipe.likes}
-                        readOnly
-                        className="w-full p-2 border rounded bg-gray-100 text-gray-500"
-                    />
+                    <div className='mx-10'>
+                        <input
+                            type="number"
+                            name="likes"
+                            value={recipe.likes}
+                            readOnly
+                            className="w-full p-2 border-b border-orange-400  bg-gray-100 text-gray-500"
+                        />
+                    </div>
 
 
+
+                </form>
+                <div className="mt-6 flex justify-end ">
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                        form="yourFormId"
+                        className="inline-block bg-orange-600 text-white py-2 px-7 rounded hover:bg-orange-700 transition"
                     >
                         Add Recipe
                     </button>
-                </form>
+                </div>
             </div>
-        </>
+        </div >
 
 
     );

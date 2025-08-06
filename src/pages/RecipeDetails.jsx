@@ -1,42 +1,43 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
+import { FaHeart } from "react-icons/fa";
+
 
 const RecipeDetails = () => {
     const data = useLoaderData();
     const { image, title, likes, cuisine, prepTime, categories, user, ingredients, instructions } = data;
-   const [count, setCount] = useState(likes); 
+    const [count, setCount] = useState(likes);
 
     const handleLikeClick = (id) => {
         const newCount = count + 1;
-        setCount(newCount); 
+        setCount(newCount);
 
         fetch(`http://localhost:3000/like-update/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ likes: newCount }) 
+            body: JSON.stringify({ likes: newCount })
         })
-        .then((res) => res.json())
-        .then(data => {
-            console.log( data);
-        });
+            .then((res) => res.json())
+            .then(data => {
+                console.log(data);
+            });
     };
 
     return (
         <>
-            <div className="max-w-5xl mx-auto p-6">
-                <div className="flex flex-col md:flex-row gap-6">
-                    <img
-                        src={image}
-                        alt={title}
-                        className="w-full md:w-1/2 h-auto rounded-lg shadow-md object-cover"
-                    />
-                    <div className="flex-1 space-y-4">
-                        <h2 className="text-3xl font-bold">{title}</h2>
-                        <p><strong>Cuisine:</strong> {cuisine}</p>
-                        <p><strong>Prep Time:</strong> {prepTime} min</p>
-                        <p><strong>Categories:</strong> {categories?.join(', ')}</p>
+            <div className=" w-full md:w-11/12 mx-auto my-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <div className=''>
+                        <img
+                            src={image}
+                            alt={title}
+                            className=" h-auto rounded-lg shadow-md object-cover"
+                        />
+                    </div>
+                    <div className="">
+
 
                         <div className="flex items-center gap-3 pt-4">
                             <img
@@ -49,31 +50,45 @@ const RecipeDetails = () => {
                                 <p className="text-sm text-gray-500">{user?.email}</p>
                             </div>
                         </div>
-                        <button
-                            onClick={() => handleLikeClick(data._id)}
-                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-                        >
-                            ❤️ Like ({count})
-                        </button>
+                        <div className=" my-10 flex-1 ">
+                            <h2 className="text-2xl font-bold">{title}</h2>
+                            <p className="text-sm text-gray-400"><strong className="text-gray-200">Cuisine:</strong> {cuisine}</p>
+                            <p className="text-sm text-gray-400"><strong className="text-gray-200">Prep Time:</strong> {prepTime} min</p>
+                            <p className="text-sm text-gray-400"><strong className="text-gray-200">Categories:</strong> {categories?.join(', ')}</p>
+
+
+                           
+                        </div>
+                        <div className="">
+                            <h3 className="text-2xl font-semibold">Ingredients</h3>
+                            <ul className="list-disc list-inside text-gray-300">
+                                {ingredients?.split(',').map((item, idx) => (
+                                    <li key={idx}>{item.trim()}</li>
+                                ))}
+                            </ul>
+
+                        </div>
+                        <div>
+
+                            <h3 className="text-2xl font-semibold mt-6">Instructions</h3>
+                            <ol className="list-decimal list-inside text-gray-300 space-y-1">
+                                {instructions?.split(',').map((step, idx) => (
+                                    <li key={idx}>{step.trim()}</li>
+                                ))}
+                            </ol>
+                        </div>
+                         <button
+                                onClick={() => handleLikeClick(data._id)}
+                                className="flex items-center transition my-3"
+                            >
+                                <span className='text-red-600 text-2xl'> <FaHeart /></span> <span className='text-xl'> {count}</span>
+                            </button>
                     </div>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold">Ingredients</h3>
-                    <ul className="list-disc list-inside text-gray-700">
-                        {ingredients?.split(',').map((item, idx) => (
-                            <li key={idx}>{item.trim()}</li>
-                        ))}
-                    </ul>
 
-                    <h3 className="text-2xl font-semibold mt-6">Instructions</h3>
-                    <ol className="list-decimal list-inside text-gray-700 space-y-1">
-                        {instructions?.split(',').map((step, idx) => (
-                            <li key={idx}>{step.trim()}</li>
-                        ))}
-                    </ol>
-                </div>
             </div>
+
         </>
     );
 };

@@ -8,7 +8,7 @@ const TopRecipeCard = ({ recipe }) => {
         <>
             <div
                 key={_id}
-                className="bg-white rounded-lg shadow-sm "
+                className="bg-black-500 border-1 border-gray-700 rounded-lg"
             >
                 <img
                     src={image || 'https://via.placeholder.com/300'}
@@ -23,7 +23,7 @@ const TopRecipeCard = ({ recipe }) => {
                             <span className='text-gray-400  '> {likes || 0}</span></p>
                     </div>
 
-                    <p className="text-gray-500 text-sm">Cuisine: {cuisine}</p>
+                    <p className="text-gray-400 text-sm"> <strong className='text-gray-200'>Cuisine:</strong> {cuisine}</p>
 
                     <Link
                         to={`/recipes/${_id}`}

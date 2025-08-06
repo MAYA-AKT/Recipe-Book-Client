@@ -32,7 +32,7 @@ const MyRecipeCard = ({ recipe }) => {
 
     return (
         <div className="flex">
-            <div key={recipe._id} className="w-110 bg-white rounded-xl shadow flex flex-col">
+            <div key={recipe._id} className="w-110 bg-black-500 border-1 border-gray-700 rounded-xl  flex flex-col">
                 <div>
                     {image ? (
                         <img
@@ -56,13 +56,13 @@ const MyRecipeCard = ({ recipe }) => {
                         </p>
                     </div>
 
-                    <p className="text-sm text-gray-700"><strong>Cuisine:</strong> {cuisine}</p>
-                    <p className="text-sm text-gray-700"><strong>Prep Time:</strong> {prepTime} min</p>
-                    <p className="text-sm text-gray-700"><strong>Categories:</strong> {categories?.join(', ')}</p>
+                    <p className="text-sm text-gray-400"><strong className="text-gray-200">Cuisine:</strong> {cuisine}</p>
+                    <p className="text-sm text-gray-400"><strong className="text-gray-200">Prep Time:</strong> {prepTime} min</p>
+                    <p className="text-sm text-gray-400"><strong className="text-gray-200">Categories:</strong> {categories?.join(', ')}</p>
 
                     <div className="mt-4">
                         <p className="text-sm mt-2"><strong>Ingredients:</strong></p>
-                        <ul className="text-sm list-disc list-inside text-gray-600">
+                        <ul className="text-sm text-gray-400 list-disc list-inside ">
                             {ingredients?.split(',').map((item, idx) => (
                                 <li key={idx}>{item.trim()}</li>
                             ))}
@@ -71,7 +71,7 @@ const MyRecipeCard = ({ recipe }) => {
 
                     <div className="pl-4">
                         <p className="text-sm mt-2"><strong>Instructions:</strong></p>
-                        <ol className="text-sm list-decimal list-inside text-gray-600">
+                        <ol className="text-sm  list-decimal list-inside text-gray-400">
                             {instructions?.split(',').map((step, idx) => (
                                 <li key={idx}>{step.trim()}</li>
                             ))}
