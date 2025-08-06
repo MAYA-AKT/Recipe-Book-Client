@@ -12,6 +12,7 @@ import AuthLayout from "../authentication/AuthLayout";
 import RecipeDetails from "../pages/RecipeDetails";
 import UpdateRecipe from "../components/UpdateRecipe";
 import ErrorPage from "../pages/ErrorPage";
+import PrivateRouter from "./PrivateRouter";
 
 
 export const router = createBrowserRouter([
@@ -27,8 +28,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my-recipes',
-                Component: MyRecipes,
-
+                element: (
+                    <PrivateRouter>
+                        <MyRecipes />
+                    </PrivateRouter>
+                ),
             },
             {
                 path: 'all-recipes',
@@ -38,14 +42,22 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'add-recipe',
-                Component: AddRecipe,
+               element: (
+                    <PrivateRouter>
+                        <AddRecipe/>
+                    </PrivateRouter>
+                ),
                 errorElement: <ErrorPage />,
             },
             {
                 path: 'recipes/:id',
                  loader: ({ params }) => fetch(`http://localhost:3000/recipe-details/${params.id}`),
                  errorElement: <ErrorPage />,
-                Component: RecipeDetails
+                element: (
+                    <PrivateRouter>
+                        <RecipeDetails />
+                    </PrivateRouter>
+                ),
             },
             {
                 path: 'recipe-update/:id',

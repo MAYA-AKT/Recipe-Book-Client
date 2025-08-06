@@ -3,6 +3,8 @@ import Links from './Links';
 import { Link } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { CiUser } from "react-icons/ci";
+import { toast } from 'react-toastify';
+
 
 const Header = () => {
     const { user, logOut } = use(AuthContext);
@@ -11,7 +13,7 @@ const Header = () => {
         logOut()
             .then(() => {
                 console.log('successfully logout');
-
+                toast.success('Account created successfully!');
             }).catch((error) => {
                 console.log(error);
 
@@ -34,7 +36,7 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="">
-                        
+
                         <p className="text-2xl font-semibold text-orange-500 ">TastyBook</p>
                     </div>
 
@@ -56,7 +58,7 @@ const Header = () => {
                                     title={user?.displayName}
                                     className="w-10 h-10 rounded-full"
                                 />
-                                : <div className='text-3xl text-orange-400'><CiUser/></div>
+                                : <div className='text-3xl text-orange-400'><CiUser /></div>
                         }
                     </div>
                     <div>
